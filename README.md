@@ -11,6 +11,7 @@ It's a plain static site (HTML, CSS and a little JavaScript) with no build step,
 | `index.html` | Home page |
 | `uses.html` | "What fits": the ten kinds of gathering and how the room sets up for each |
 | `studio.html` | The podcast studio |
+| `events.html` | Upcoming and past events, read from `assets/data/events.js` |
 | `book.html` | Booking steps, contact details and FAQ |
 | `blog/` | The Journal. One HTML file per post, plus `blog/index.html` |
 | `404.html` | Not-found page |
@@ -28,6 +29,10 @@ Shared styles are in `assets/css/site.css` and scripts in `assets/js/site.js`. P
 - Structured data: `EventVenue` on the home page, `FAQPage` on the booking page, `Service` on the studio page, and `BlogPosting` on each post.
 - `sitemap.xml` lists every page. Submit it in [Google Search Console](https://search.google.com/search-console) once the site is live.
 - All photos have descriptive alt text and explicit sizes so pages load without jumping.
+
+## Adding an event
+
+Open `assets/data/events.js` on GitHub, click the pencil icon, copy the example block at the top of the file into the `[ ]` list, fill it in and commit. Dates are written `YYYY-MM-DD`. The Events page sorts events into "Coming up" and "Past events" by date, and adds Event structured data for Google. Put event photos in `img/events/`.
 
 ## Adding a blog post
 
