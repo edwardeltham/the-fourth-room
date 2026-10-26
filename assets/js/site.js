@@ -59,17 +59,3 @@ if (wave) {
     wave.appendChild(s);
   }
 }
-
-const copyBtn = document.getElementById("copyBtn");
-if (copyBtn) {
-  copyBtn.addEventListener("click", () => {
-    const phone = document.getElementById("phone");
-    const txt = phone.textContent.trim();
-    const msg = document.getElementById("copied");
-    navigator.clipboard.writeText(txt).then(() => { msg.textContent = "Copied " + txt; }).catch(() => {
-      const r = document.createRange(); r.selectNodeContents(phone);
-      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      msg.textContent = "Number selected. Press Ctrl+C or ⌘C to copy.";
-    });
-  });
-}

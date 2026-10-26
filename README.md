@@ -17,13 +17,9 @@ It's a plain static site (HTML, CSS and a little JavaScript) with no build step,
 
 Shared styles are in `assets/css/site.css` and scripts in `assets/js/site.js`. Photos are in `img/`.
 
-## Before launch: fill in the placeholders
+## Still to add
 
-Search the HTML for `class="todo"` and `TODO` and fill in:
-
-- WhatsApp number (in `index.html` and `book.html`)
-- `telephone` in the structured data at the top of `index.html`
-- The studio's equipment list in `studio.html`
+- The studio's equipment list and a photo of it (marked `TODO` in `studio.html`)
 - The brand's own neon colours, if they differ from the placeholders at the top of `assets/css/site.css`
 
 ## SEO
