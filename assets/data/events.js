@@ -38,4 +38,16 @@
 
 window.FOURTH_ROOM_EVENTS = [
 
+  {
+    title: "Kadhaipoma: a listening circle for women",
+    date: "2026-11-14",
+    start: "4:00 PM",
+    end: "7:00 PM",
+    description: "A safe space to be heard, without being judged or fixed. A grounding practice, a poem and quiet reflective writing, pair sharing, a full listening circle, a body-based coping skill, gratitude sharing, a small gift and refreshments. No advice. No fixing. Just listening. Women only, limited seats.",
+    price: "₹826 all inclusive",
+    host: "Viruthi (Flourishing Families)",
+    link: "https://wa.me/919840254762?text=Hi%2C%20I%27d%20like%20a%20seat%20at%20Kadhaipoma%20on%2014%20November",
+    image: "img/events/kadhaipoma-14-nov-2026.jpg"
+  },
+
 ];
