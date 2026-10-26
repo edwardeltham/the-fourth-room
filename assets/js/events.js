@@ -1,5 +1,5 @@
 // Renders assets/data/events.js into the Events page and adds Event structured data for search engines.
-(() => {
+const renderEvents = () => {
   const events = (window.FOURTH_ROOM_EVENTS || []).filter(e => e && e.title && /^\d{4}-\d{2}-\d{2}$/.test(e.date || ""));
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const day = e => new Date(e.date + "T00:00:00");
@@ -66,4 +66,14 @@
     const s = document.createElement("script"); s.type = "application/ld+json"; s.textContent = JSON.stringify(ld);
     document.head.appendChild(s);
   }
+};
+
+// The events list is edited on GitHub without touching this page, so load it with a
+// cache-busting stamp that changes every 5 minutes; browsers never keep a stale list for long.
+(() => {
+  const s = document.createElement("script");
+  s.src = (document.currentScript?.dataset.events || "assets/data/events.js") + "?t=" + Math.floor(Date.now() / 300000);
+  s.onload = renderEvents;
+  s.onerror = renderEvents;
+  document.head.appendChild(s);
 })();
