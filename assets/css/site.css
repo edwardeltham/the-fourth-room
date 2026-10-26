@@ -148,9 +148,10 @@ dl.spec dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* gallery */
 .photos { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 12px; margin-top: 44px; }
-.photos figure { margin: 0; min-width: 0; }
+.photos figure { margin: 0; min-width: 0; display: flex; flex-direction: column; }
 .photos img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
-.photos figure:first-child img { aspect-ratio: 4 / 3; height: 100%; }
+/* the wide photo fills whatever height the two portrait photos set, leaving room for its caption */
+.photos figure:first-child img { aspect-ratio: auto; flex: 1 1 0; min-height: 0; }
 .photos figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
 .quote { font-family: var(--display); font-size: clamp(26px, 3.4vw, 40px); line-height: 1.15; margin-top: 56px; max-width: 22ch; }
 .quote small { display: block; font-family: var(--body); font-size: 14px; color: var(--muted); margin-top: 14px; }
@@ -252,7 +253,7 @@ section:nth-of-type(5n+5) .label { --lc: var(--neon-violet); }
 .wave span:nth-child(5n+3) { background: var(--neon-cyan); }
 .wave span:nth-child(5n+4) { background: var(--neon-orange); }
 .wave span:nth-child(5n+5) { background: var(--neon-violet); }
-.photos figure { border-bottom: 5px solid var(--nc); padding-bottom: 10px; }
+.photos img { border-bottom: 5px solid var(--nc); }
 .photos figure:nth-child(1) { --nc: var(--neon-orange); }
 .photos figure:nth-child(2) { --nc: var(--neon-violet); }
 .photos figure:nth-child(3) { --nc: var(--neon-lime); }
@@ -276,6 +277,7 @@ section:nth-of-type(5n+5) .label { --lc: var(--neon-violet); }
   .inside-grid { grid-template-columns: 1fr 1fr; }
   .photos { grid-template-columns: 1fr 1fr; }
   .photos figure:first-child { grid-column: 1 / -1; }
+  .photos figure:first-child img { aspect-ratio: 4 / 3; flex: none; }
   .card { grid-template-columns: auto 1fr; }
   .card dl { grid-column: 1 / -1; }
   .use { grid-template-columns: auto 1fr; }
