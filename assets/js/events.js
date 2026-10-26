@@ -10,6 +10,14 @@
 
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const safeUrl = u => /^(https?:\/\/|img\/|mailto:)/.test(u || "") ? u : "";
+  // "4:00 PM" on 2026-11-14 -> "2026-11-14T16:00:00+05:30" (Chennai time), for search engines
+  const iso = (date, t) => {
+    const m = /^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?$/i.exec(String(t || "").trim());
+    if (!m) return null;
+    let h = +m[1];
+    if (m[3]) h = h % 12 + (m[3].toLowerCase() === "pm" ? 12 : 0);
+    return `${date}T${String(h).padStart(2, "0")}:${m[2] || "00"}:00+05:30`;
+  };
   const when = e => {
     const d = day(e).toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
     return [d, [e.start, e.end].filter(Boolean).join(" – ")].filter(Boolean).join(" · ");
@@ -19,7 +27,7 @@
     const d = day(e);
     const img = safeUrl(e.image), link = safeUrl(e.link);
     return `<article class="event${isPast ? " past" : ""}" style="--nc:var(${neons[i % neons.length]})">
-      ${img ? `<img src="${esc(img)}" alt="${esc(e.title)} at The Fourth Room" loading="lazy">` : ""}
+      ${img ? `<img src="${esc(img)}" alt="Poster for ${esc(e.title)} at The Fourth Room" loading="lazy">` : ""}
       <div class="event-date" aria-hidden="true"><b>${d.getDate()}</b><span>${d.toLocaleDateString("en-IN", { month: "short" })}</span></div>
       <div class="event-body">
         <h3>${esc(e.title)}</h3>
@@ -39,13 +47,14 @@
   const ld = events.map(e => {
     const o = {
       "@context": "https://schema.org", "@type": "Event", name: e.title, description: e.description,
-      startDate: e.date, eventStatus: "https://schema.org/EventScheduled",
+      startDate: iso(e.date, e.start) || e.date, eventStatus: "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       location: { "@type": "Place", name: "The Fourth Room", address: { "@type": "PostalAddress",
         streetAddress: "214, South First Cross Street, Kapaleeshwarar Nagar", addressLocality: "Neelankarai, Chennai",
         addressRegion: "Tamil Nadu", postalCode: "600041", addressCountry: "IN" } },
       organizer: { "@type": "Organization", name: e.host || "The Fourth Room", url: base }
     };
+    const end = iso(e.date, e.end); if (end) o.endDate = end;
     if (safeUrl(e.image)) o.image = new URL(e.image, base).href;
     if (e.price) {
       const n = String(e.price).replace(/[^\d.]/g, "");
