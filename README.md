@@ -32,7 +32,7 @@ Shared styles are in `assets/css/site.css` and scripts in `assets/js/site.js`. P
 
 ## Adding an event
 
-Open `assets/data/events.js` on GitHub, click the pencil icon, copy the example block at the top of the file into the `[ ]` list, fill it in and commit. Dates are written `YYYY-MM-DD`. The Events page sorts events into "Coming up" and "Past events" by date, and adds Event structured data for Google. Put event photos in `img/events/`.
+Open `assets/data/events.js` on GitHub, click the pencil icon, copy the example block at the top of the file into the `[ ]` list, fill it in and commit. Dates are written `YYYY-MM-DD`. The Events page sorts events into "Coming up" and "Past events" by date, and adds Event structured data for Google. Put event photos in `img/events/`. New or edited events show on the live site within about 10 minutes of committing.
 
 ## Adding a blog post
 
