@@ -27,26 +27,20 @@ if (chips) {
     document.getElementById("cardMore").href = "uses.html#" + u.id;
     if (heroWord && fromUser) heroWord.textContent = i === uses.length - 1 ? "yours" : u.k.toLowerCase().replace(" afternoon", "");
   };
+  // until someone picks a chip, the hero word and colour cycle through the gatherings
+  let auto = null, ai = 0;
+  const stop = () => { clearInterval(auto); auto = null; };
   uses.forEach((u, i) => {
     const b = document.createElement("button");
     b.type = "button"; b.className = "chip";
     b.textContent = u.k; b.style.setProperty("--c", u.c);
-    b.addEventListener("click", () => pick(i, true));
+    b.addEventListener("click", () => { stop(); pick(i, true); });
     chips.appendChild(b);
   });
   pick(0, false);
-}
-
-// the empty fourth square in the header mark: hover or tap it to fill it with the next neon
-const neons = ["--neon-pink", "--neon-lime", "--neon-cyan", "--neon-orange", "--neon-violet"];
-let ni = 0;
-const headerMark = document.querySelector(".brand .mark");
-if (headerMark) {
-  headerMark.addEventListener("click", e => {
-    e.preventDefault();
-    ni = (ni + 1) % neons.length;
-    root.style.setProperty("--fill", `var(${neons[ni]})`);
-  });
+  if (heroWord && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    auto = setInterval(() => { ai = (ai + 1) % uses.length; pick(ai, true); }, 2200);
+  }
 }
 
 const wave = document.getElementById("wave");
