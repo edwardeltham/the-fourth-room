@@ -300,3 +300,18 @@ section:nth-of-type(5n+5) .label { --lc: var(--neon-violet); }
   *, *::before { animation: none !important; transition: none !important; }
   .wave span { height: var(--h); }
 }
+
+/* two-photo strip (studio page) and the studio kit list */
+.photos-two { grid-template-columns: 1fr 1fr; }
+.photos-two figure:first-child img { aspect-ratio: 3 / 4; flex: none; }
+.photos-two figure:nth-child(1) { --nc: var(--neon-cyan); }
+.photos-two figure:nth-child(2) { --nc: var(--neon-pink); }
+@media (max-width: 860px) { .photos-two figure:first-child { grid-column: auto; } .photos-two figure:first-child img { aspect-ratio: 3 / 4; } }
+.kit { list-style: none; padding: 0; margin: 32px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 28px; }
+.kit li { display: flex; gap: 12px; align-items: baseline; }
+.kit li::before { content: ""; width: 9px; height: 9px; background: var(--neon-lime); flex: none; }
+.kit li:nth-child(even)::before { background: var(--neon-violet); }
+/* the front-door photo under the booking steps */
+.door-photo { margin: 32px 0 0; max-width: 360px; }
+.door-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-bottom: 5px solid var(--neon-orange); }
+.door-photo figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
