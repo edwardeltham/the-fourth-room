@@ -18,8 +18,14 @@
     price        For example "Free" or "₹500" (optional)
     host         Who's running it (optional)
     link         Where people sign up: a WhatsApp, Instagram or ticket link (optional)
+    linkText     Words on the sign-up button, for example "Register now" (optional,
+                 "Save a spot" if left out)
+    qr           A QR code picture for signing up, uploaded to img/events/ (optional)
     image        A photo. Upload it to the img/events/ folder and put its path here,
                  for example "img/events/origami-nov.jpg" (optional)
+    images       Several posters instead of one, in square brackets, for example
+                 ["img/events/a.jpg", "img/events/b.jpg"]. The first one shows large and
+                 visitors tap the small ones to swap (optional, use instead of image)
 
   Example to copy (keep the curly brackets and put a comma after the closing one):
 
@@ -46,8 +52,14 @@ window.FOURTH_ROOM_EVENTS = [
     description: "A safe space to be heard, without being judged or fixed. A grounding practice, a poem and quiet reflective writing, pair sharing, a full listening circle, a body-based coping skill, gratitude sharing, a small gift and refreshments. No advice. No fixing. Just listening. Women only, limited seats.",
     price: "₹826 all inclusive",
     host: "Viruthi (Flourishing Families)",
-    link: "https://wa.me/919840254762?text=Hi%2C%20I%27d%20like%20a%20seat%20at%20Kadhaipoma%20on%2014%20November",
-    image: "img/events/kadhaipoma-14-nov-2026.jpg"
+    link: "https://klippme.com/viruthi/kadhaipoma-chapter-two-2",
+    linkText: "Register and book",
+    qr: "img/events/kadhaipoma-register-qr.png",
+    images: [
+      "img/events/kadhaipoma-1-phones-down.jpg",
+      "img/events/kadhaipoma-2-unmute-yourself.jpg",
+      "img/events/kadhaipoma-3-seen-heard.jpg"
+    ]
   },
 
 ];

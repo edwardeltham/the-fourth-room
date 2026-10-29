@@ -205,10 +205,15 @@ footer img { width: 120px; height: auto; display: block; }
 .events { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 32px; }
 .event { background: var(--wall); display: grid; grid-template-columns: auto 1fr; align-content: start; gap: clamp(18px, 4vw, 40px); padding: clamp(22px, 4vw, 36px); border-left: 6px solid var(--nc); }
 /* photos and posters keep their own shape: a portrait poster sits beside the details, a landscape photo spans the top */
-.event:has(> img) { grid-template-columns: minmax(0, 360px) auto 1fr; align-items: start; }
-.event > img { width: 100%; height: auto; display: block; }
-.past-grid .event:has(> img) { grid-template-columns: auto 1fr; }
-.past-grid .event > img { grid-column: 1 / -1; }
+.event:has(> .event-posters) { grid-template-columns: minmax(0, 360px) auto 1fr; align-items: start; }
+.event-posters { display: grid; gap: 8px; }
+.event-posters > img { width: 100%; height: auto; display: block; }
+.event-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 8px; }
+.event-thumbs button { padding: 0; border: 2px solid transparent; background: none; cursor: pointer; opacity: .6; transition: opacity .2s, border-color .2s; }
+.event-thumbs button:hover, .event-thumbs button[aria-pressed="true"] { opacity: 1; border-color: var(--nc); }
+.event-thumbs img { width: 100%; height: auto; display: block; }
+.past-grid .event:has(> .event-posters) { grid-template-columns: auto 1fr; }
+.past-grid .event > .event-posters { grid-column: 1 / -1; }
 .event-date { width: 76px; text-align: center; background: var(--nc); color: #111113; padding: 10px 0 8px; align-self: start; }
 .event-date b { display: block; font-family: var(--display); font-weight: 400; font-size: 40px; line-height: 1; }
 .event-date span { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
@@ -216,13 +221,16 @@ footer img { width: 120px; height: auto; display: block; }
 .event h3 { font-size: clamp(26px, 3.2vw, 38px); }
 .event p:not(.meta) { color: var(--muted); max-width: 60ch; }
 .event .btn { margin-top: 6px; }
+.event-qr { display: flex; align-items: center; gap: 14px; margin: 6px 0 0; }
+.event-qr img { width: 120px; height: 120px; background: #fff; padding: 6px; display: block; }
+.event-qr figcaption { font-size: 14px; color: var(--muted); }
 .past-grid { grid-template-columns: repeat(2, 1fr); }
 .event.past { border-left-width: 0; border-top: 6px solid var(--nc); }
 .events-empty { background: var(--wall); display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 4vw, 44px); padding: clamp(24px, 4vw, 44px); align-items: start; }
 .events-empty .mark { width: clamp(64px, 9vw, 96px); gap: 5px; --bw: 4px; }
 .events-empty h3 { font-size: clamp(28px, 3.6vw, 44px); }
 .events-empty p { color: var(--muted); margin-top: 10px; max-width: 52ch; }
-@media (max-width: 860px) { .past-grid { grid-template-columns: 1fr; } .event:has(> img) { grid-template-columns: auto 1fr; } .event > img { grid-column: 1 / -1; max-width: 480px; } }
+@media (max-width: 860px) { .past-grid { grid-template-columns: 1fr; } .event:has(> .event-posters) { grid-template-columns: auto 1fr; } .event > .event-posters { grid-column: 1 / -1; max-width: 480px; } }
 @media (max-width: 520px) { .events-empty { grid-template-columns: 1fr; } .event-date { width: 64px; } .event-date b { font-size: 32px; } }
 
 /* neon mixture: the five accents take turns around the site, always as fills or lines, never as body text on the light walls */
