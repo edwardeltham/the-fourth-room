@@ -18,6 +18,8 @@ const renderEvents = () => {
     if (m[3]) h = h % 12 + (m[3].toLowerCase() === "pm" ? 12 : 0);
     return `${date}T${String(h).padStart(2, "0")}:${m[2] || "00"}:00+05:30`;
   };
+  // An event can have one "image" or several "images"; the first one is shown large
+  const images = e => (Array.isArray(e.images) ? e.images : [e.image]).map(safeUrl).filter(Boolean);
   const when = e => {
     const d = day(e).toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
     return [d, [e.start, e.end].filter(Boolean).join(" – ")].filter(Boolean).join(" · ");
@@ -25,16 +27,20 @@ const renderEvents = () => {
 
   const card = (e, i, isPast) => {
     const d = day(e);
-    const img = safeUrl(e.image), link = safeUrl(e.link);
+    const imgs = images(e), link = safeUrl(e.link), qr = safeUrl(e.qr);
+    const alt = `Poster for ${esc(e.title)} at The Fourth Room`;
+    const thumbs = imgs.length > 1 ? `<div class="event-thumbs">${imgs.map((u, n) =>
+      `<button type="button" data-src="${esc(u)}" aria-label="Show poster ${n + 1} of ${imgs.length}" aria-pressed="${!n}"><img src="${esc(u)}" alt="" loading="lazy"></button>`).join("")}</div>` : "";
     return `<article class="event${isPast ? " past" : ""}" style="--nc:var(${neons[i % neons.length]})">
-      ${img ? `<img src="${esc(img)}" alt="Poster for ${esc(e.title)} at The Fourth Room" loading="lazy">` : ""}
+      ${imgs.length ? `<div class="event-posters"><img src="${esc(imgs[0])}" alt="${alt}" loading="lazy">${thumbs}</div>` : ""}
       <div class="event-date" aria-hidden="true"><b>${d.getDate()}</b><span>${d.toLocaleDateString("en-IN", { month: "short" })}</span></div>
       <div class="event-body">
         <h3>${esc(e.title)}</h3>
         <p class="meta">${esc(when(e))}</p>
         <p>${esc(e.description)}</p>
         <dl class="spec">${e.price ? `<dt>Price</dt><dd>${esc(e.price)}</dd>` : ""}${e.host ? `<dt>Host</dt><dd>${esc(e.host)}</dd>` : ""}</dl>
-        ${!isPast && link ? `<a class="btn" href="${esc(link)}" rel="noopener">Save a spot</a>` : ""}
+        ${!isPast && link ? `<a class="btn" href="${esc(link)}" rel="noopener">${esc(e.linkText || "Save a spot")}</a>` : ""}
+        ${!isPast && qr ? `<figure class="event-qr"><img src="${esc(qr)}" alt="QR code to register for ${esc(e.title)}" width="120" height="120" loading="lazy"><figcaption>Or scan to register</figcaption></figure>` : ""}
       </div>
     </article>`;
   };
@@ -42,6 +48,15 @@ const renderEvents = () => {
   const up = document.getElementById("upcoming"), pa = document.getElementById("past");
   if (upcoming.length) up.innerHTML = upcoming.map((e, i) => card(e, i, false)).join("");
   if (past.length) { pa.innerHTML = past.map((e, i) => card(e, i + 2, true)).join(""); document.getElementById("past-section").hidden = false; }
+
+  // Tapping a small poster swaps it into the large spot
+  document.addEventListener("click", ev => {
+    const b = ev.target.closest(".event-thumbs button");
+    if (!b) return;
+    const wrap = b.closest(".event-posters");
+    wrap.querySelector(":scope > img").src = b.dataset.src;
+    wrap.querySelectorAll(".event-thumbs button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  });
 
   // Event structured data, so search engines can show dates in results
   const ld = events.map(e => {
@@ -55,7 +70,7 @@ const renderEvents = () => {
       organizer: { "@type": "Organization", name: e.host || "The Fourth Room", url: base }
     };
     const end = iso(e.date, e.end); if (end) o.endDate = end;
-    if (safeUrl(e.image)) o.image = new URL(e.image, base).href;
+    const imgs = images(e); if (imgs.length) o.image = imgs.map(u => new URL(u, base).href);
     if (e.price) {
       const n = String(e.price).replace(/[^\d.]/g, "");
       o.offers = { "@type": "Offer", price: /free/i.test(e.price) ? "0" : n || undefined, priceCurrency: "INR", url: safeUrl(e.link) || base + "events.html" };
