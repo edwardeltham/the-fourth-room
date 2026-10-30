@@ -34,6 +34,8 @@ Shared styles are in `assets/css/site.css` and scripts in `assets/js/site.js`. P
 
 Open `assets/data/events.js` on GitHub, click the pencil icon, copy the example block at the top of the file into the `[ ]` list, fill it in and commit. Dates are written `YYYY-MM-DD`. The Events page sorts events into "Coming up" and "Past events" by date, and adds Event structured data for Google. Put event photos in `img/events/`. New or edited events show on the live site within about 10 minutes of committing.
 
+The home page also pops up the next upcoming event (first poster, date and sign-up button) using the same list, via `assets/js/event-popup.js`. Each visitor sees it once per event; add `popup: false` to an event to leave it out.
+
 ## Adding a blog post
 
 1. Copy an existing post in `blog/` and give it a short, descriptive file name, such as `blog/how-to-run-a-craft-workshop.html`.
