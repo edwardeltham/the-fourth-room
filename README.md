@@ -42,8 +42,6 @@ Open `assets/data/events.js` on GitHub, click the pencil icon, copy the example 
 
 ## Hosting and custom domain
 
-The site is served by GitHub Pages from the `main` branch at https://thefourthroom.co/ (the domain is registered on Hostinger). The `CNAME` file tells GitHub Pages which domain to use, so keep it in the repo. The old address, https://edwardeltham.github.io/the-fourth-room/, redirects to the new one.
-
-DNS at Hostinger: four `A` records for `@` pointing to 185.199.108.153, 185.199.109.153, 185.199.110.153 and 185.199.111.153, and a `CNAME` record for `www` pointing to `edwardeltham.github.io`.
+The live site at https://thefourthroom.co/ is hosted on Hostinger: the files are uploaded as a zip into `public_html` (Hostinger File Manager), so every change to `main` needs a fresh zip of the site files uploaded there. The repo is also published on GitHub Pages at https://edwardeltham.github.io/the-fourth-room/. The `CNAME` file only matters if the domain is ever pointed at GitHub Pages instead (four `A` records for `@` to 185.199.108.153 to 185.199.111.153 and a `www` `CNAME` to `edwardeltham.github.io`).
 
 All canonical, `og:` and sitemap URLs use `https://thefourthroom.co/`. `404.html` uses links that start with `/`, so it works at any missing address.
