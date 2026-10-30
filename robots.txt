@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://edwardeltham.github.io/the-fourth-room/sitemap.xml
+Sitemap: https://thefourthroom.co/sitemap.xml
