@@ -44,6 +44,6 @@ The home page also pops up the next upcoming event (first poster, date and sign-
 
 ## Hosting and custom domain
 
-The live site at https://thefourthroom.co/ is hosted on Hostinger: the files are uploaded as a zip into `public_html` (Hostinger File Manager), so every change to `main` needs a fresh zip of the site files uploaded there. The repo is also published on GitHub Pages at https://edwardeltham.github.io/the-fourth-room/. The `CNAME` file only matters if the domain is ever pointed at GitHub Pages instead (four `A` records for `@` to 185.199.108.153 to 185.199.111.153 and a `www` `CNAME` to `edwardeltham.github.io`).
+The live site at https://thefourthroom.co/ is hosted on Hostinger, which pulls this repo with Git (hPanel → Advanced → Git, branch `main`, into `public_html`) and redeploys automatically whenever `main` changes. Don't upload files to `public_html` by hand, because the next deploy overwrites them. The repo is also published on GitHub Pages at https://edwardeltham.github.io/the-fourth-room/, with no custom domain set there. If the domain is ever moved to GitHub Pages instead, add a `CNAME` file containing `thefourthroom.co` and point the DNS at GitHub (four `A` records for `@` to 185.199.108.153 to 185.199.111.153 and a `www` `CNAME` to `edwardeltham.github.io`).
 
 All canonical, `og:` and sitemap URLs use `https://thefourthroom.co/`. `404.html` uses links that start with `/`, so it works at any missing address.
