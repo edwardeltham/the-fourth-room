@@ -323,3 +323,18 @@ section:nth-of-type(5n+5) .label { --lc: var(--neon-violet); }
 .door-photo { margin: 32px 0 0; max-width: 360px; }
 .door-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-bottom: 5px solid var(--neon-orange); }
 .door-photo figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+/* "Made at The Fourth Room": Instagram reels on the studio page */
+.reels-intro { color: var(--muted); max-width: 60ch; margin-top: 14px; }
+.reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; margin-top: 36px; align-items: start; }
+.reel { margin: 0; min-width: 0; border-top: 5px solid var(--nc); padding-top: 12px; }
+.reel:nth-child(5n+1) { --nc: var(--neon-cyan); }
+.reel:nth-child(5n+2) { --nc: var(--neon-pink); }
+.reel:nth-child(5n+3) { --nc: var(--neon-lime); }
+.reel:nth-child(5n+4) { --nc: var(--neon-violet); }
+.reel:nth-child(5n+5) { --nc: var(--neon-orange); }
+.reel .instagram-media, .reel iframe { width: 100% !important; min-width: 0 !important; max-width: 100% !important; margin: 0 !important; }
+.reel blockquote.instagram-media { display: flex; align-items: center; justify-content: center; min-height: 420px; padding: 24px; background: var(--wall-2); border: 1px solid var(--line); box-sizing: border-box; }
+.reel blockquote.instagram-media a { color: var(--ink); font-weight: 600; }
+.reel figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.reel figcaption a { color: inherit; }

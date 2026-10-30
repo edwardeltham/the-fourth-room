@@ -36,6 +36,10 @@ Open `assets/data/events.js` on GitHub, click the pencil icon, copy the example 
 
 The home page also pops up the next upcoming event (first poster, date and sign-up button) using the same list, via `assets/js/event-popup.js`. Each visitor sees it once per event; add `popup: false` to an event to leave it out.
 
+## Adding a reel to the studio page
+
+The "Made at The Fourth Room" section on `studio.html` shows Instagram reels shot here, listed in `assets/data/reels.js`. On Instagram tap Share, then "Copy link" on the reel. Open `assets/data/reels.js` on GitHub, click the pencil icon, copy one of the blocks, paste the link and the creator's name, and commit. The first reel in the list shows first. If the list is empty the section hides itself.
+
 ## Adding a blog post
 
 1. Copy an existing post in `blog/` and give it a short, descriptive file name, such as `blog/how-to-run-a-craft-workshop.html`.
