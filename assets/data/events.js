@@ -26,6 +26,9 @@
     images       Several posters instead of one, in square brackets, for example
                  ["img/events/a.jpg", "img/events/b.jpg"]. The first one shows large and
                  visitors tap the small ones to swap (optional, use instead of image)
+    popup        The home page pops up the next upcoming event (its first poster, date
+                 and sign-up button) once for each visitor. Add  popup: false  to an
+                 event to leave it out of the popup (optional)
 
   Example to copy (keep the curly brackets and put a comma after the closing one):
 
